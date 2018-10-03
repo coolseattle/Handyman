@@ -1,0 +1,64 @@
+<div>
+  <h1>
+    <div  *ngIf ="this.DataMode === 'Edit'">Edit Customer </div>
+    <div *ngIf ="this.DataMode === 'Add'">Add Customer </div>
+  </h1>
+  <hr>
+  <div class="col-md-4">
+    <form [formGroup]="customerForm" (ngSubmit)="saveCustomer(customerForm.value)" autocomplete="off" novalidate>
+      <div class="form-group" [ngClass]="{'error' : !validateFirstName() }">
+        <label for="fname">First Name:</label>
+        <em *ngIf="!validateFirstName() && customerForm.controls.fname.errors.required">Required</em>
+        <em *ngIf="!validateFirstName() && customerForm.controls.fname.errors.pattern">Must start with a letter</em>
+        <input formControlName="fname" id="fname" type="text" class="form-control" placeholder="First Name..." />
+      </div>
+      <div class="form-group"  [ngClass]="{'error' : !validateLastName() }">
+        <label for="lname">Last Name:</label>
+        <em *ngIf="!validateLastName()">Required</em>
+        <input formControlName="lname" id="lname" type="text" class="form-control" placeholder="Last Name..." />
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <em *ngIf="customerForm.controls.age.errors?.required">Required</em>
+        <em *ngIf="customerForm.controls.age.errors?.pattern">Age accept numeric only</em>
+        <em *ngIf="customerForm.controls.age.errors?.max || customerForm.controls.age.errors?.min">Maximum is 199</em>
+        <input formControlName="age" id="age" type="text" class="form-control" placeholder="age.." />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <em *ngIf="customerForm.controls.phone.errors?.required">Required</em>
+        <em *ngIf="customerForm.controls.phone.errors?.minlength || customerForm.controls.phone.errors?.maxlength ">Phone number min:9 max:15</em>
+        <input formControlName="phone" id="phone" type="text" class="form-control" placeholder="Phone.." />
+      </div>
+      <div class="form-group">
+        <label for="PhotoImageUrl">PhotoImageUrl:</label>
+        <input formControlName="PhotoImageUrl" id="PhotoImageUrl" type="text" class="form-control" placeholder="Photo Image..." />
+      </div>
+      <div class="form-group">
+        <label for="latitude">latitude:</label>
+        <input formControlName="latitude" id="latitude" type="text" class="form-control" placeholder="latitude Image..." />
+        <button type="button" class="btn btn-default" (click)="getGeoLocation()">Fill Location</button>
+      </div>  
+      <div class="form-group" >
+        <label for="longitude">longitude:</label>
+        <input formControlName="longitude" id="longitude" type="text" class="form-control" placeholder="longitude Image..." />
+      </div>  
+      <div class="form-group">
+        <label for="adhaarID">adhaarID:</label>
+        <input formControlName="adhaarID" id="adhaarID" type="text" class="form-control" placeholder="adhaarID Image..." />
+      </div>  
+      <div class="form-group">
+        <label for="adhaarImage">adhaarImage:</label>
+          <input formControlName="adhaarImage" id="adhaarImage" type="text" class="form-control" placeholder="adhaarImage Image..." />
+      </div>
+      <div class="form-group">
+        <label for="referenceby">referenceby:</label>
+        <input formControlName="referenceby" id="referenceby" type="text" class="form-control" placeholder="referenceby Image..." />
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+    </form>
+  <div>
+</div>
