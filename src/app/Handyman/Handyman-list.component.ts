@@ -18,7 +18,7 @@ import { IHandyMan } from '../Handyman/shared/Handyman.model';
 })
 
 export class HandymanListComponent implements OnInit {
-  Handymen: IHandyMan[];
+  Handymen: I1HandyMan[];
   constructor(private handymanService: HandymanService, private route: ActivatedRoute) {
   }
 
