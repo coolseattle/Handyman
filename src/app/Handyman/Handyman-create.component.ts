@@ -37,7 +37,6 @@ export class HandymanCreateComponent implements OnInit {
   private  adhaarID: FormControl;
   private  adhaarImage: FormControl;
   private  referenceby: FormControl;
-  private  DataMode = 'Add';
   constructor(private router: ActivatedRoute,
     private customerService: HandymanService,
     private rediretrouter: Router,
@@ -46,15 +45,13 @@ export class HandymanCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-       
       this.router.params.forEach((params: Params) => {
      this.customer = this.customerService.getHandyman(+params['id']);
         this.addMode = false;
         if (!this.customer) {
-              this.DataMode = 'Add';
+              this.addMode = false;
               this.createEmptyCustomer();
            }
-      
       });
       console.warn( ' fname ' +  this.customer.fname);
       this.InitFormControl();

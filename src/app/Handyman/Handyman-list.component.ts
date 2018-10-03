@@ -6,7 +6,7 @@ import { IHandyMan } from '../Handyman/shared/Handyman.model';
 @Component({
   template: `
     <div>
-        <h1>Top Handymans</h1>
+        <h1>Top Handymen</h1>
         <hr/>
         <div class="row">
         <div *ngFor="let handyman of Handymen" class="col-md-5">

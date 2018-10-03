@@ -1,6 +1,7 @@
 <div>
   <h1>
-    <div>Add Customer </div>
+    <div *ngIf="addMode ">Add new Handyman</div>
+    <div *ngIf="!addMode">Edit Handyman</div>
   </h1>
   <hr>
   <div class="col-md-4">
@@ -16,7 +17,7 @@
         <em *ngIf="!validateLastName()">Required</em>
         <input formControlName="lname" id="lname" type="text" class="form-control" placeholder="Last Name..." />
       </div>
-
+        
       <div class="form-group">
         <label for="age">Age:</label>
         <em *ngIf="customerForm.controls.age.errors?.required">Required</em>
