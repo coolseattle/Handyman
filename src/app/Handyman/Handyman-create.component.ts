@@ -19,7 +19,7 @@ import { createTemplateData } from '@angular/core/src/view/refs';
 })
 export class HandymanCreateComponent implements OnInit {
   customerForm: FormGroup;
-  private addMode = false;
+  addMode = false;
   private customer: IHandyMan;
   private fname: FormControl;
   private lname: FormControl;

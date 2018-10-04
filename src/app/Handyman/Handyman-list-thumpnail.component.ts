@@ -5,7 +5,7 @@ import { IHandyMan } from '../Handyman/shared/Handyman.model';
   selector: `Handyman-thumbnail`,
   template: `
     <div [routerLink]="['/handyman/edit', Handyman.id]" class="well hoverwell thumbnail">
-      <h2>{{Han?.fname | uppercase}} {{Handyman?.lname | uppercase}} </h2>
+      <h2>{{Handyman?.fname | uppercase}} {{Handyman?.lname | uppercase}} </h2>
       <div>Phone: {{Handyman?.phone}}</div>
       <div *ngIf="Handyman?.location">
         <span>Location: {{Handyman?.location?.Address1}}</span>

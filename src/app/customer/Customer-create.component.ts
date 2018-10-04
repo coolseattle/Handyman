@@ -38,7 +38,7 @@ export class CustomerCreateComponent implements OnInit {
   private  adhaarID: FormControl;
   private  adhaarImage: FormControl;
   private  referenceby: FormControl;
-  private  DataMode = 'Add';
+  DataMode = 'Add';
   constructor(private router: ActivatedRoute,
     private customerService: CustomerService,
     private rediretrouter: Router,
