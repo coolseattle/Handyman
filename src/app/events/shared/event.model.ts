@@ -5,13 +5,19 @@ export interface IEvent {
   time: string
   price: number
   imageUrl: string
+  Customername: String
+  HandymanName: String
+  Customerid: string 
+  Handymanid: string
+  Noofdays: number
   location?: {
     address: string
     city: string
     country: string
   },
   onlineUrl?: string,
-  sessions: ISession[]
+  sessions: ISession[],
+  status: string
 }
 
 export interface ISession {
