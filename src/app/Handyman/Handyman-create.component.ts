@@ -5,6 +5,7 @@ import { IHandyMan } from './shared/Handyman.model';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TOASTR_TOKEN, Toastr } from '../common/toastr.service';
 import { createTemplateData } from '@angular/core/src/view/refs';
+import {existingMobileNumberValidator} from '../Validators/existingMobileNumberValidator';
 
 @Component({
   templateUrl: './Handyman-Create.component.html',
@@ -18,6 +19,7 @@ import { createTemplateData } from '@angular/core/src/view/refs';
   `]
 })
 export class HandymanCreateComponent implements OnInit {
+  private URLValidPattern = '^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$';
   customerForm: FormGroup;
   addMode = false;
   private customer: IHandyMan;
@@ -74,16 +76,18 @@ export class HandymanCreateComponent implements OnInit {
     
     this.fname = new FormControl (this.customer.fname, [Validators.required, Validators.pattern('[a-zA-Z].*')]);
     this.lname = new FormControl( this.customer.lname, Validators.required);
-    this.phone = new FormControl( this.customer.phone, [Validators.required, Validators.minLength(9), Validators.maxLength(15)]);
-    this.PhotoImageUrl = new FormControl( this.customer.PhotoImageUrl);
+    this.phone = new FormControl( this.customer.phone, 
+       {validators: [Validators.required, Validators.minLength(9), Validators.maxLength(15)],
+        asyncValidators: [existingMobileNumberValidator(this.customerService, this.customer.phone, this.addMode)], updateOn: 'blur'});
+    this.PhotoImageUrl = new FormControl( this.customer.PhotoImageUrl, Validators.pattern[this.URLValidPattern]);
     this.age  = new FormControl(this.customer.age,
-          [Validators.required, Validators.min(17) ,  Validators.max(199), Validators.pattern('^[0-9]*$')]);
+        [Validators.required, Validators.min(17) ,  Validators.max(199), Validators.pattern('^[0-9]*$')]);
     this.latitude  = new FormControl(this.customer.latitude);
     this.longitude  = new FormControl( this.customer.longitude);
     this.adhaarID  = new FormControl(this.customer.adhaarID);
     this.adhaarImage  = new FormControl( this.customer.adhaarImage);
     this.referenceby  = new FormControl(this.customer.referenceby);
-  
+
     this.customerForm = new FormGroup({
        fname :  this.fname,
        lname :  this.lname,
@@ -97,7 +101,10 @@ export class HandymanCreateComponent implements OnInit {
         referenceby :   this.referenceby
     }); 
   }
-  
+
+  validateImageurl(val : any){
+    console.warn( "Photo Image url changed.");
+  }
   createEmptyCustomer() {
           this.customer = {
             id: Math.floor((Math.random() * 100) + 1),

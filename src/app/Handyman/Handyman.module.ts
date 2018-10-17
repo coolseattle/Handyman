@@ -21,6 +21,7 @@ import { HandymanCreateComponent } from './Handyman-create.component';
     HandymanListComponent,
     HandymanThumbnailComponent,
     HandymanCreateComponent
+    
   ],
   providers: [
     HandymanService,

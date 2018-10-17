@@ -1,16 +1,22 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable } from 'rxjs/RX';
+import { Subject, Observable, observable } from 'rxjs';
 import { IHandyMan} from './Handyman.model';
 
 @Injectable()
 export class HandymanService {
   getHandymen(): Observable<IHandyMan[]> {
     let subject = new Subject<IHandyMan[]>();
-    setTimeout(() => {subject.next(HANDYMEN); subject.complete(); }, 100);
-    console.warn('Inside Gethandymen Observable')
+    try {
+      setTimeout(() => {subject.next(HANDYMEN); subject.complete(); }, 100);
+    }
+    catch (err)
+    {
+      console.error(err);
+      subject.error(err);
+    }
     return subject;
   }
-
+  
   getHandymanArray(): IHandyMan[] {
     return HANDYMEN;
   }
@@ -28,6 +34,11 @@ export class HandymanService {
       customer.id = 999;
       HANDYMEN.push(customer);
     }
+  }
+
+  getUserByMobileNumber(PhoneNumber: string) :  IHandyMan {
+    const result = HANDYMEN.find(customer => customer.phone === PhoneNumber);
+    return result; 
   }
 
   updateHandyman(customer : IHandyMan) {

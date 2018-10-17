@@ -26,6 +26,7 @@ import { appRoutes } from './routes'
 import { Error404Component } from './errors/404.component'
 import { AuthService } from './user/auth.service'
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
+import { ExistingMobileNumberValidatorDirective } from './Validators/existingMobileNumberValidator';
 
 let toastr:Toastr = window['toastr'];
 let jQuery = window['$'];
@@ -52,7 +53,8 @@ let jQuery = window['$'];
     UpvoteComponent,
     ModalTriggerDirective,
     LocationValidator,
-    DurationPipe
+    DurationPipe,
+    ExistingMobileNumberValidatorDirective
   ],
   providers: [
     EventService, 

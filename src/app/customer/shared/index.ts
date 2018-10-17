@@ -1,2 +1,2 @@
-export * from './customer.model';
+export * from './Customer.model';
 export * from './Customer.Service';

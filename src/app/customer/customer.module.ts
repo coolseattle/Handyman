@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule,  ActivatedRouteSnapshot } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { customerRoutes } from './customer.routes';
+import { customerRoutes } from './Customer.routes';
 import { CustomersListComponent } from './Customer-list.component';
 import { CustomerService } from './shared';
 import { CustomerListResolver } from './Customer-list-resolver';
