@@ -9,7 +9,7 @@ import { IHandyMan } from '../Handyman/shared/Handyman.model';
         <h1>Top Handymen</h1>
         <hr/>
         <div class="row">
-        <div *ngFor="let handyman of Handymen" class="col-md-5">
+        <div *ngFor="let handyman of Handymen" class="col-md-3">
             <div class="card-deck">
                 <Handyman-thumbnail [Handyman]="handyman"></Handyman-thumbnail>
              </div>

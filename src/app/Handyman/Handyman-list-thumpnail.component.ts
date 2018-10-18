@@ -5,8 +5,8 @@ import {NgbRating} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: `Handyman-thumbnail`,
   template: `
-  <div [routerLink]="['/handyman/edit', Handyman.id]" class="card well hoverwell thumbnail">
-    <img class="card-img-top Thumbnail rounded" src="{{Handyman?.PhotoImageUrl}}" alt="Handyman image">
+  <div [routerLink]="['/handyman/edit', Handyman.id]" class="card well hoverwell thumbnail" style="max-width: 15rem; max-height:25rem;">
+    <img style="width:15rem; height:25rem;" class="card-img-top Thumbnail rounded" src="{{Handyman?.PhotoImageUrl}}" alt="Handyman image" >
     <div class="card-body"> <!-- card-img-overlay -->
       <h4 class="card-title">{{Handyman?.fname}} {{Handyman?.lname}} </h4>
       <div class="card-text">

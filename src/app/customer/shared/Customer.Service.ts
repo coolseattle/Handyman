@@ -38,7 +38,7 @@ const CUSTOMERS: ICustomer[] = [
       id: 1,
       fname: 'Angular Connect',
       lname: 'Angular Connect',
-      PhotoImageUrl: '/assets/images/angularconnect-shield.png',
+      PhotoImageUrl: '/assets/images/customer1.jpeg',
       age:30,
       phone: '+919486903444',
       location: {
@@ -59,7 +59,7 @@ const CUSTOMERS: ICustomer[] = [
       id: 2,
       fname: 'Nanda',
       lname: 'Baluchamy',
-      PhotoImageUrl: '/assets/images/angularconnect-shield.png',
+      PhotoImageUrl: '/assets/images/Customer2.jpeg',
       age: 12,
       phone: '+919486903343',
       location: {
