@@ -1,0 +1,56 @@
+resources:
+- repo: self
+queue:
+  name: Hosted VS2017
+  demands: npm
+
+steps:
+- task: Npm@1
+  displayName: 'npm install angular cli'
+  inputs:
+    command: custom
+
+    verbose: false
+
+    customCommand: 'install @angular/cli -g'
+
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    verbose: false
+
+
+- task: Npm@1
+  displayName: 'npm install run build'
+  inputs:
+    command: custom
+
+    verbose: false
+
+    customCommand: 'run-script build'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: dist'
+  inputs:
+    PathtoPublish: dist
+
+    ArtifactName: dist
+
+
+- task: AzureRmWebAppDeployment@3
+  displayName: 'Azure App Service Deploy: Handyman'
+  inputs:
+    azureSubscription: 'Pay-As-You-Go (2835e67d-95f6-4987-916f-0cfda1b553f0)'
+
+    WebAppName: Handyman
+
+    Package: '$(System.DefaultWorkingDirectory)/dist/'
+
+    UseWebDeploy: true
+
+    RemoveAdditionalFilesFlag: true
+
+
+
