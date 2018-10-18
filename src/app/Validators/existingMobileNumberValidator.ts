@@ -1,8 +1,9 @@
 import { Directive } from '@angular/core';
 import { AsyncValidatorFn, AsyncValidator, NG_ASYNC_VALIDATORS, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Observable } from "rxjs";
+import { Observable} from "rxjs";
 import { HandymanService } from '../Handyman/shared/Handyman.Service';
-import { map } from 'rxjs/operators'; //import 'rxjs/add/operator/map';
+import {IHandyMan} from '../Handyman/shared/Handyman.model';
+import { map } from 'rxjs/operators'; 
 
 export function existingMobileNumberValidator(handymanservice: HandymanService,  oldvalue: string,   entrymode: boolean): AsyncValidatorFn {
   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
@@ -37,7 +38,10 @@ export function existingMobileNumberValidator(handymanservice: HandymanService, 
   providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: ExistingMobileNumberValidatorDirective, multi: true}]
 })
 export class ExistingMobileNumberValidatorDirective implements AsyncValidator {
-  constructor(private handymanservice: HandymanService, private oldvalue: string, private entrymode: boolean) {  }
+  private oldvalue: string;
+  private entrymode: boolean;
+
+  constructor(private handymanservice: HandymanService) {  }
 
   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
      return existingMobileNumberValidator(this.handymanservice, this.oldvalue, this.entrymode)(control);
