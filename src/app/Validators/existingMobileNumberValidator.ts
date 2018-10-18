@@ -38,8 +38,8 @@ export function existingMobileNumberValidator(handymanservice: HandymanService, 
   providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: ExistingMobileNumberValidatorDirective, multi: true}]
 })
 export class ExistingMobileNumberValidatorDirective implements AsyncValidator {
-  private oldvalue: string;
-  private entrymode: boolean;
+  public oldvalue: string;
+  public entrymode: boolean;
 
   constructor(private handymanservice: HandymanService) {  }
 
