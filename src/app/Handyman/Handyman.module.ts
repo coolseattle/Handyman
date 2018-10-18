@@ -9,13 +9,15 @@ import { HandymanService } from './shared';
 import { HandymanListResolver } from './Handyman-list-resolver.service';
 import { HandymanThumbnailComponent } from './Handyman-list-thumpnail.component';
 import { HandymanCreateComponent } from './Handyman-create.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(HandymanRoutes)
+    RouterModule.forChild(HandymanRoutes),
+    NgbModule
   ],
   declarations: [
     HandymanListComponent,

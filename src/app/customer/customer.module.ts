@@ -9,13 +9,15 @@ import { CustomerService } from './shared';
 import { CustomerListResolver } from './Customer-list-resolver';
 import { CustomerThumbnailComponent } from './Customer-list-thumpnail.component';
 import { CustomerCreateComponent } from './Customer-create.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(customerRoutes)
+    RouterModule.forChild(customerRoutes),
+    NgbModule
   ],
   declarations: [
     CustomersListComponent,

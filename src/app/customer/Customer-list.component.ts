@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from './shared/Customer.Service';
 import { ActivatedRoute } from '@angular/router';
 import { ICustomer } from './shared/index';
+import {NgbRating} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   template: `

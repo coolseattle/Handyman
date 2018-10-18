@@ -9,7 +9,7 @@ import { IEvent } from './shared/index'
     <h1>Recently Completed Jobs</h1>
     <hr/>
     <div class="row">
-      <div *ngFor="let event of events" class="col-md-5">
+      <div *ngFor="let event of events" class="col-md-3">
         <event-thumbnail [event]="event"></event-thumbnail>
       </div>
     </div>

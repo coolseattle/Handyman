@@ -4,35 +4,24 @@ import { IEvent } from './shared/index'
 @Component({
   selector: 'event-thumbnail',
   template: `
-    <div class="well hoverwell thumbnail">
-     <div class="row">
-          <h3><a [routerLink]="['/events', event.id]" class="hoverwell"> {{event?.name | uppercase}} </a></h3>
-          <div *ngIf="event?.imageUrl" class="col-md-3">
-            <img src="{{ event?.imageUrl}}" class="img-thumbnail img-responsive pull-right" 
-              alt="Customer Image" width="100%" height="100%" />
+    <div class="card" style="width: 14rem; margin-top:0; ">
+       <a [routerLink]="['/events', event.id]" class="btn btn-primary"><h6 class="card-title small">{{event?.name}}</h6></a>
+       <div class="card-body">
+          <!-- <img class="img-thumbnail img-responsive  pull-right" src="{{ event?.imageUrl}}" alt="{{event?.name}}"> -->
+          <h6 class="card-subtitle mb-2 text-muted">Service Date: {{event?.date | date:'shortDate'}}.</h6>
+          <div class="card-text">
+          <div *ngIf="event?.location" class="small">
+              <span>location: {{event?.location?.city}}, {{event?.location?.country}}</span>
           </div>
-          <div class="col-md-9 ">
-              <div>Service Date: {{event?.date | date:'shortDate'}}</div>
-              <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">
-                Time: {{event?.time}}
-                <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
-                <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
-                <span *ngSwitchDefault>(Normal Start)</span>
-              </div>
-              <div>Customer: <a [routerLink]="['/customer/edit', event.Customerid]"> {{event?.Customername}} </a> </div>
-              <span>Handyman: <a [routerLink]="['/handyman/edit', event.Handymanid]">{{event?.HandymanName}} </a></span>
-              <div *ngIf="event?.location">
-                <span>location: {{event?.location?.city}}, {{event?.location?.country}}</span>
-              </div>
-              <div *ngIf="event?.onlineUrl">
-                Online URL: {{event?.onlineUrl}}
-              </div>
+          <div>Customer:<a  class="card-link" [routerLink]="['/customer/edit', event.Customerid]"> {{event?.Customername}} </a> </div>
+          <div>Handy Man:<a class="card-link" [routerLink]="['/handyman/edit', event.Handymanid]">{{event?.HandymanName}} </a> </div>
+         </div>
         </div>
-      </div>
     </div>
+    <div>&nbsp;</div>
+    
   `,
   styles: [`
-    .thumbnail { min-height: 210px; }
     .pad-left { margin-left: 10px; }
     .well div { color: #bbb; }
   `]

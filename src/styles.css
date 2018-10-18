@@ -1,3 +1,6 @@
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/font-awesome/css/font-awesome.css';
+
 /* You can add global styles to this file, and also import other style files */
 .hoverwell:hover {
   background-color: #485563;
