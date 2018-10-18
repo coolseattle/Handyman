@@ -10,8 +10,10 @@ import {NgbRating} from '@ng-bootstrap/ng-bootstrap';
         <h1>Recently Enrolled Customers</h1>
         <hr/>
         <div class="row">
-        <div *ngFor="let customer of customers" class="col-md-5">
-            <customer-thumbnail [customer]="customer"></customer-thumbnail>
+        <div *ngFor="let customer of customers" class="col-md-3">
+           <div class="card-deck">
+             <customer-thumbnail [customer]="customer"></customer-thumbnail>
+            </div>
         </div>
         </div>
     </div>
