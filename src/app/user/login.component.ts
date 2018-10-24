@@ -1,5 +1,8 @@
 import { Component } from '@angular/core'
 import { AuthService } from './auth.service'
+import {AuthenticationService, ILoginState} from '../Services/authentication/index';
+import {Observable} from 'rxjs'; 
+
 import { Router } from '@angular/router'
 
 @Component({
@@ -12,16 +15,23 @@ export class LoginComponent {
   username
   password
   mouseoverLogin
-
-  constructor(private authService:AuthService, private router:Router) {
-
+  constructor(private authService:AuthenticationService, private router: Router) {
   }
 
-  login(formValues) {
-    this.authService.loginUser(formValues.userName, formValues.password)
-    this.router.navigate(['events'])
-  }
-
+  login(formValues) { 
+    this.authService.login(formValues.userName, formValues.password);
+    this.authService.authChange$.subscribe( loginstate => 
+       { 
+         if (loginstate.Loggedin){
+            console.warn('successully logged in');
+            const redirecturl = this.authService.redirecturl ? this.authService.redirecturl : 'events';
+            // Redirect the user
+            this.router.navigate([redirecturl]);
+          }
+        }
+    );
+    this.router.navigate['handyman/list'];
+}
   cancel() {
     this.router.navigate(['events'])
   }

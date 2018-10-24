@@ -5,7 +5,9 @@ import { IEvent } from './shared/index'
   selector: 'event-thumbnail',
   template: `
     <div class="card" style="width: 14rem; margin-top:0; ">
+       <a [routerLink]="['/events', event.id]" class="btn btn-primary"> 
        <h6 class="card-title" style="text-align: center">{{event?.name}}</h6>
+       </a>
        <div class="card-body">
           <!-- <img class="img-thumbnail img-responsive  pull-right" src="{{ event?.imageUrl}}" alt="{{event?.name}}"> -->
           <h6 class="card-subtitle mb-2 text-muted">Service Date: {{event?.date | date:'shortDate'}}.</h6>
@@ -18,7 +20,7 @@ import { IEvent } from './shared/index'
          </div>
         </div>
     </div>
-    <!-- a [routerLink]="['/events', event.id]" class="btn btn-primary"/ --> 
+    
     
     <div>&nbsp;</div>
     

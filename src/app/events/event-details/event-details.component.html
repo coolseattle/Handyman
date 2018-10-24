@@ -6,7 +6,29 @@
       <h2>{{event?.name | uppercase}} </h2>
     </div>
   </div>
-
+  <ngb-tabset>
+      <ngb-tab>
+        <ng-template ngbTabTitle><b>Overview </b></ng-template>
+        <ng-template ngbTabContent>
+           <div class="col-md-6">
+                <div><strong>Date:</strong> {{event?.date | date:'shortDate'}}</div>
+                <div><strong>Time:</strong> {{event?.time}}</div>
+                <div><strong>Price:</strong> {{event?.price | currency:'USD'}}</div>
+             </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle><b>Job Location</b></ng-template>
+        <ng-template ngbTabContent> 
+            <address>
+                <strong>Address:</strong><br />
+                {{event?.location?.address}}<br />
+                {{event?.location?.city}}, {{event?.location?.country}}
+             </address>
+        </ng-template>
+      </ngb-tab>
+  </ngb-tabset>
+  <!-- 
   <div class="row">
     <div class="col-md-6">
       <div><strong>Date:</strong> {{event?.date | date:'shortDate'}}</div>
@@ -21,34 +43,41 @@
       </address>
     </div>
   </div>
-
+  -->
   <hr>
-
-
-
-  <div class="row" style="margin-bottom:10px">
+  <div class="row" style="margin-bottom:15px">
+   
     <div class="col-md-2">
-      <h3 style="margin:0">Sessions</h3>
+        <div class="btn-group mr-3 btn-group-sm">
+            <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+              <button class="btn btn-outline-danger" ngbDropdownToggle>Sort</button>
+              <div class="dropdown-menu" ngbDropdownMenu>
+                      <button class="dropdown-item" (click)="sortBy='name'">Name</button>
+                      <button class="dropdown-item" (click)="sortBy='votes'">Date</button>
+              </div>
+            </div>
+            <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+              <button class="btn btn-outline-success" ngbDropdownToggle>Filter By:</button>
+              <div class="dropdown-menu" ngbDropdownMenu>
+                  <button class="dropdown-item" (click)="filterBy='all'">None</button>
+                  <button class="dropdown-item" (click)="filterBy='beginner'">Customer</button>
+                  <button class="dropdown-item" (click)="filterBy='intermediate'">Handyman</button>
+                  <button class="dropdown-item" (click)="filterBy='advanced'">Admin</button>
+              </div>
+            </div>
+          </div>
     </div>
-    <div class="col-md-7">
-      <div class="btn-group btn-group-sm" style="margin-right:20px;margin-left:20px">
-        <button class="btn btn-default" [class.active]="sortBy==='name'" (click)="sortBy='name'">By Name</button>
-        <button class="btn btn-default" [class.active]="sortBy==='votes'" (click)="sortBy='votes'">By Votes</button>
-      </div>
-
-      <div class="btn-group btn-group-sm">
-        <button class="btn btn-default" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
-        <button class="btn btn-default" [class.active]="filterBy==='beginner'" (click)="filterBy='beginner'">Beginner</button>
-        <button class="btn btn-default" [class.active]="filterBy==='intermediate'" (click)="filterBy='intermediate'">Intermediate</button>
-        <button class="btn btn-default" [class.active]="filterBy==='advanced'" (click)="filterBy='advanced'">Advanced</button>
-      </div>
+    <div class="col-md-7" style ="text-align:center">
+        <h3 style="margin:0">Feedbacks</h3>
     </div>
     <div class="col-md-2">
-      <a (click)="addSession()">Add Session</a>
+      <a (click)="addSession()">Add Feedback</a>
     </div>
   </div>
-
-  <session-list [filterBy]="filterBy" [sortBy]="sortBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
-  <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()"></create-session>
-
+  <div class="row" style="margin-bottom:10px">
+      <div class="col-md-12" style="margin:0;">
+          <session-list [filterBy]="filterBy" [sortBy]="sortBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
+          <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()"></create-session>
+      </div>
+  </div>  
 </div>

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule, ActivatedRouteSnapshot } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+ 
 import {
   EventsListComponent,
   EventThumbnailComponent,
@@ -27,6 +28,8 @@ import { Error404Component } from './errors/404.component'
 import { AuthService } from './user/auth.service'
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
 import { ExistingMobileNumberValidatorDirective } from './Validators/existingMobileNumberValidator';
+import { AuthenticationService } from './Services/authentication/index';
+import { AdminGuardService } from './router.guard.service/index';
 
 let toastr:Toastr = window['toastr'];
 let jQuery = window['$'];
@@ -36,7 +39,8 @@ let jQuery = window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule
   ],
   declarations: [
     EventsAppComponent,
@@ -63,11 +67,13 @@ let jQuery = window['$'];
     EventRouteActivator,
     EventListResolver,
     VoterService,
+    AdminGuardService,
     AuthService,
     { 
       provide: 'canDeactivateCreateEvent', 
       useValue: checkDirtyState 
-    }
+    },
+    AuthenticationService
   ],
   bootstrap: [EventsAppComponent]
 })
@@ -76,5 +82,6 @@ export class AppModule {}
 export function checkDirtyState(component:CreateEventComponent) {
   if (component.isDirty)
     return window.confirm('You have not saved this event, do you really want to cancel?')
-  return true
+  return true;
 }
+ 
