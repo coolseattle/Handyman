@@ -16,8 +16,8 @@ export const appRoutes:Routes = [
   { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivator] },
   { path: 'events/session/new', component: CreateSessionComponent },
   { path: '404', component: Error404Component },
-  { path: 'user', loadChildren: 'app/user/user.module#UserModule'},
-  { path: 'customer', loadChildren: 'app/customer/customer.module#CustomerModule'},
-  { path: 'handyman', loadChildren: 'app/Handyman/Handyman.module#HandymanModule'},
+  { path: 'user', loadChildren: () => import('app/user/user.module').then(m => m.UserModule)},
+  { path: 'customer', loadChildren: () => import('app/customer/customer.module').then(m => m.CustomerModule)},
+  { path: 'handyman', loadChildren: () => import('app/Handyman/Handyman.module').then(m => m.HandymanModule)},
   { path: '', redirectTo: '/events', pathMatch: 'full'}
 ];
