@@ -1,5 +1,5 @@
 import { Pipe } from "@angular/core";
-import { PipeTransform } from "@angular/core/src/change_detection/pipe_transform";
+import { PipeTransform } from "@angular/core";
 
 @Pipe({name: 'duration'})
 export class DurationPipe implements PipeTransform {

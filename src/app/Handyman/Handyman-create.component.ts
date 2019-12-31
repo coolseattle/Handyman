@@ -4,7 +4,6 @@ import { HandymanService } from './shared/Handyman.Service';
 import { IHandyMan } from './shared/Handyman.model';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TOASTR_TOKEN, Toastr } from '../common/toastr.service';
-import { createTemplateData } from '@angular/core/src/view/refs';
 import {existingMobileNumberValidator} from '../Validators/existingMobileNumberValidator';
 
 @Component({

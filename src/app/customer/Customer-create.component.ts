@@ -4,7 +4,6 @@ import { CustomerService } from './shared/Customer.Service';
 import { ICustomer, ICustomerTemplateModel } from './shared/Customer.model';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TOASTR_TOKEN, Toastr } from '../common/toastr.service';
-import { createTemplateData } from '@angular/core/src/view/refs';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
