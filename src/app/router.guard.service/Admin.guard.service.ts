@@ -8,20 +8,19 @@ import { LoginRole } from '../Services';
 @Injectable()
 export class AdminGuardService implements CanActivate {
   constructor(
-    private authService: AuthenticationService, 
+    private authService: AuthenticationService,
     private router: Router) {}
 
   canActivate(next:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     let loggedin  = false;
-    let url: string = state.url;
+    const url: string = state.url;
 
     return this.authService.authChange$.pipe(
         map( user => {
             if (user && user.Loggedin && user.role as LoginRole === LoginRole.Admin as LoginRole){
                 loggedin = true;
                 return true;
-            }
-            else{
+            } else {
                 this.authService.redirecturl = url;
                 this.router.navigate(['/user/login']);
                 console.warn('guard returning false at the end :' + loggedin);
@@ -33,11 +32,11 @@ export class AdminGuardService implements CanActivate {
 }
 
 @Injectable()
-export class LogoutGuardService implements CanActivate {  
-  constructor(private authService: AuthenticationService, 
+export class LogoutGuardService implements CanActivate {
+  constructor(private authService: AuthenticationService,
     private router: Router) {}
 
-  canActivate():boolean {
+  canActivate(): boolean {
     this.authService.logout();
     this.router.navigate(['']);
     return true;

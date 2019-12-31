@@ -3587,7 +3587,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         this.auth = auth;
         this.eventService = eventService;
-        this.searchTerm = "";
+        this.searchTerm = '';
       }
 
       _createClass(NavBarComponent, [{

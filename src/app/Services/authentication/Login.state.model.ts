@@ -1,6 +1,6 @@
 export interface ILoginState {
-    Loggedin : boolean,
-    role? : LoginRole,
+    Loggedin: boolean;
+    role?: LoginRole;
     user?: {
         id: number;
         fname: string;
@@ -8,9 +8,9 @@ export interface ILoginState {
         phone: string;
         lastlogindate: Date;
         PhotoImageUrl: string;
-    }
+    };
   }
- 
+
 export const enum LoginRole {
     Admin,
     Handymen,

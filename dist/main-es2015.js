@@ -2277,7 +2277,7 @@ let NavBarComponent = class NavBarComponent {
     constructor(auth, eventService) {
         this.auth = auth;
         this.eventService = eventService;
-        this.searchTerm = "";
+        this.searchTerm = '';
     }
     searchSessions(searchTerm) {
         this.eventService.searchSessions(searchTerm).subscribe(sessions => {
@@ -2331,7 +2331,7 @@ let AdminGuardService = class AdminGuardService {
     }
     canActivate(next, state) {
         let loggedin = false;
-        let url = state.url;
+        const url = state.url;
         return this.authService.authChange$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(user => {
             if (user && user.Loggedin && user.role === 0 /* Admin */) {
                 loggedin = true;
